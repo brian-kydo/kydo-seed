@@ -1,0 +1,18 @@
+# Use a modern, slim Python base image
+FROM python:3.11-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy and install dependencies first for better layer caching
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application source code
+COPY . .
+
+# Expose the default port. Cloud Run will override this.
+EXPOSE 8080
+
+# The command to start the NiceGUI application
+CMD ["python", "main.py"]
