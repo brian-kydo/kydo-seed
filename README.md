@@ -1,1 +1,2 @@
 # kydo-seed
+autodeploy
